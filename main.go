@@ -2,12 +2,21 @@ package main
 
 import (
 	"fmt"
+	"hangman/dictionary"
 	"hangman/hangman"
 	"os"
+	"path"
 )
 
 func main() {
-	g := hangman.New(8, "Golang")
+
+	err := dictionary.Load(path.Base("D:\\ProjetsCours\\Projets\\Go\\hangman\\ressources\\words.txt"))
+	if err != nil {
+		fmt.Printf("Could not load dictionary: %v\n", err)
+		os.Exit(1)
+	}
+
+	g := hangman.New(8, dictionary.PickWord())
 
 	hangman.DrawWelcome()
 
