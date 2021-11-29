@@ -16,7 +16,7 @@ func main() {
 		os.Exit(1)
 	}
 
-	g := hangman.New(8, dictionary.PickWord())
+	g, err := hangman.New(8, dictionary.PickWord())
 
 	hangman.DrawWelcome()
 
